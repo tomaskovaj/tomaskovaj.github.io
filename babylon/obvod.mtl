@@ -1,0 +1,230 @@
+newmtl 3D_obvod_zdi_sedleckopy.dgn_3D_Metric_Design_244_233_215_vis
+    Ns 0.000000
+    Kd 0.956863 0.913725 0.843137
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_obvod_zdi_sedleckopy.dgn_3D_Metric_Design_175_167_142_vis
+    Ns 0.000000
+    Kd 0.686275 0.654902 0.556863
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_obvod_zdi_sedleckopy.dgn_3D_Metric_Design_64_64_64_vis
+    Ns 0.000000
+    Kd 0.250980 0.250980 0.250980
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_obvod_zdi_sedleckopy.dgn_3D_Metric_Design_165_173_182_vis
+    Ns 0.000000
+    Kd 0.647059 0.678431 0.713725
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_obvod_zdi_sedleckopy.dgn_3D_Metric_Design_240_240_240_vis
+    Ns 0.000000
+    Kd 0.941176 0.941176 0.941176
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_obvod_zdi_1NP_sedleckopy.dgn_3D_Metric_Design_175_167_142_vis
+    Ns 0.000000
+    Kd 0.686275 0.654902 0.556863
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_obvod_zdi_1NP_sedleckopy.dgn_3D_Metric_Design_240_240_240_vis
+    Ns 0.000000
+    Kd 0.941176 0.941176 0.941176
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_balkon_sedleckopy.dgn_3D_Metric_Design_240_240_240_vis
+    Ns 0.000000
+    Kd 0.941176 0.941176 0.941176
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_dreveny_obklad_sedleckopy.dgn_3D_Metric_Design_31_26_20_vis
+    Ns 0.000000
+    Kd 0.121569 0.101961 0.078431
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_obvod_zdi_sedleckopy.dgn_3D_Metric_Design_242_222_222_vis
+    Ns 0.000000
+    Kd 0.949020 0.870588 0.870588
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_okna_dvere_sedleckopy.dgn_3D_Metric_Design_31_26_20_vis
+    Ns 0.000000
+    Kd 0.121569 0.101961 0.078431
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_fasada_sedleckopy.dgn_3D_Metric_Design_175_167_142_vis
+    Ns 0.000000
+    Kd 0.686275 0.654902 0.556863
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_fasada_sedleckopy.dgn_3D_Metric_Design_181_166_166_vis
+    Ns 0.000000
+    Kd 0.709804 0.650980 0.650980
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_fasada_sedleckopy.dgn_3D_Metric_Design_255_255_255_vis
+    Ns 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_balkon_sedleckopy.dgn_3D_Metric_Design_99_175_163_vis
+    Ns 0.000000
+    Kd 0.388235 0.686275 0.639216
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_okna_dvere_sedleckopy.dgn_3D_Metric_Design_142_109_125_vis
+    Ns 0.000000
+    Kd 0.556863 0.427451 0.490196
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_okna_dvere_sedleckopy.dgn_3D_Metric_Design_55_42_48_vis
+    Ns 0.000000
+    Kd 0.215686 0.164706 0.188235
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_okna_dvere_sedleckopy.dgn_3D_Metric_Design_119_178_188_vis
+    Ns 0.000000
+    Kd 0.466667 0.698039 0.737255
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_okna_dvere_sedleckopy.dgn_3D_Metric_Design_161_241_255_vis
+    Ns 0.000000
+    Kd 0.631373 0.945098 1.000000
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_okna_dvere_sedleckopy.dgn_3D_Metric_Design_35_30_23_vis
+    Ns 0.000000
+    Kd 0.137255 0.117647 0.090196
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_fasada_sedleckopy.dgn_3D_Metric_Design_240_240_240_vis
+    Ns 0.000000
+    Kd 0.941176 0.941176 0.941176
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_okna_dvere_sedleckopy.dgn_3D_Metric_Design_133_199_210_vis
+    Ns 0.000000
+    Kd 0.521569 0.780392 0.823529
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_fasada_sedleckopy.dgn_3D_Metric_Design_118_112_108_vis
+    Ns 0.000000
+    Kd 0.462745 0.439216 0.423529
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_okna_dvere_sedleckopy.dgn_3D_Metric_Design_240_240_240_vis
+    Ns 0.000000
+    Kd 0.941176 0.941176 0.941176
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_okna_dvere_sedleckopy.dgn_3D_Metric_Design_139_205_216_vis
+    Ns 0.000000
+    Kd 0.545098 0.803922 0.847059
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_okna_dvere_sedleckopy.dgn_3D_Metric_Design_64_64_64_vis
+    Ns 0.000000
+    Kd 0.250980 0.250980 0.250980
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_okna_dvere_sedleckopy.dgn_3D_Metric_Design_128_189_199_vis
+    Ns 0.000000
+    Kd 0.501961 0.741176 0.780392
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_okna_dvere_sedleckopy.dgn_3D_Metric_Design_144_209_220_vis
+    Ns 0.000000
+    Kd 0.564706 0.819608 0.862745
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_okna_dvere_sedleckopy.dgn_3D_Metric_Design_111_166_175_vis
+    Ns 0.000000
+    Kd 0.435294 0.650980 0.686275
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_obvod_zdi_sedleckopy.dgn_3D_Metric_Design_49_36_33_vis
+    Ns 0.000000
+    Kd 0.192157 0.141176 0.129412
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_okna_dvere_sedleckopy.dgn_3D_Metric_Design_3_5_4_vis
+    Ns 0.000000
+    Kd 0.011765 0.019608 0.015686
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_okna_dvere_sedleckopy.dgn_3D_Metric_Design_129_193_204_vis
+    Ns 0.000000
+    Kd 0.505882 0.756863 0.800000
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
+
+newmtl 3D_obvod_zdi_1NP_sedleckopy.dgn_3D_Metric_Design_82_82_82_vis
+    Ns 0.000000
+    Kd 0.321569 0.321569 0.321569
+    Ks 1.000000 1.000000 1.000000
+
+    map_Kd 
