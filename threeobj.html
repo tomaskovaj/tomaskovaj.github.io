@@ -1,0 +1,681 @@
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="author" content="Jana Tomášková" />
+    <meta name="keywords" content="BP, web, vizualizace" />
+    <meta name="description" content="Webová stránka k bakalářské práci" />
+    <title>Vizualizace bakalářské práce</title>
+    <script type="application/x-javascript">
+      addEventListener("load", function() {setTimeout(hideURLbar, 0); }, false);
+      function hideURLbar() {window.scrollTo(0,1);}
+    </script>
+    
+    
+  		<script src="./js/three.js"></script>
+
+		<script src="./js/MTLLoader.js"></script>
+		<script src="./js/OBJLoader.js"></script>
+    <script src="./js/OrbitControls.js"></script>
+		<script src="./js/Detector.js"></script>
+
+		<script src="js/stats.min.js"></script>
+      
+
+     
+    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-image: url("./images/background.jpg")
+      }
+
+      .navbar {
+        overflow: hidden;
+        background-color: #333;
+      }
+
+      .navbar a {
+        float: left;
+        font-size: 16px;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      /* .navbar div.logo {
+        position: relative;
+        height: 50px;
+        width: 50px;
+        background-color: red;
+        left: calc(100% - 50px);
+      }
+
+      .navbar div.logo img {
+        height: 100%;
+        top: 0;
+      } */
+
+      .dropdown {
+        float: left;
+        overflow: hidden;
+      }
+
+      .dropdown .dropbtn {
+        font-size: 16px;
+        border: none;
+        outline: none;
+        color: white;
+        padding: 14px 16px;
+        background-color: inherit;
+        font-family: inherit;
+        margin: 0;
+      }
+
+      .navbar a:hover,
+      .dropdown:hover .dropbtn {
+        background-color: rgb(60, 190, 49);
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+
+      .dropdown-content a {
+        float: none;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+      }
+
+      .dropdown-content a:hover {
+        background-color: #ddd;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: black;
+        color: white;
+        text-align: center;  
+      }
+
+      .footer img {
+        position: absolute;
+        height: 45px;
+        margin: 2.5px;
+        left: 0;
+      }
+
+      header {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+      }     
+   
+          div#container canvas{
+          position: relative;
+          width: 80%;
+      height: 80%;
+          
+          }
+      
+    </style>
+  </head>
+  <body>
+    <header>     
+      <h1 class="intro"><span>Vizualizace Hamousova statku</span></h1>
+    </header>
+    <div class="navbar">
+      <a href="./main.html">Hlavní stránka</a>
+      <div class="dropdown">
+        <button class="dropbtn">
+          Informace
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="./info.html"
+            >Informace o statku</a
+          >
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">
+          Vizualizace BP
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="./threeobj.html">Three.js - OBJ</a>
+        </div>
+      </div>
+    </div>
+    
+    <h3>Vizualizace modelu ve formátu OBJ v rozhraní Three.js</h3>
+
+   
+		<div id="container"></div> 
+
+    <div class="footer">
+      <img src="cvut_white.png" alt="logo_cvut" />
+      <p>Vyhotovila Jana Tomášková v rámci bakalářské práce 2020</p>
+    </div>
+    		<script>
+
+			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+     var container, stats, clock, controls;
+			var camera, scene, renderer;
+      var ob1,ob2,ob3,ob4,ob5,ob6,ob7,ob8,ob9,ob10,ob11,ob12,ob13;
+
+			init();
+			animate();
+			function init() {
+				container = document.createElement( 'div' );
+				document.body.appendChild( container );
+        
+  			// scene
+				scene = new THREE.Scene();
+        clock = new THREE.Clock();				   
+        
+        //camera
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 1000000 );
+				camera.position.set( -20, 20, 20 );    
+        scene.add( camera );   
+
+           
+           
+        //light
+        var ambientLight = new THREE.AmbientLight( 0xffffff, 0.1);
+				scene.add( ambientLight );  
+
+				var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.8 );
+				directionalLight.position.set( 1, 1, 1 ).normalize();
+				camera.add( directionalLight );  
+           
+           
+           
+           
+				// add layers of model 
+				new THREE.MTLLoader()
+					.setPath( './babylon/' )
+					.load( 'vstupnisin.mtl', function ( materials ) 
+          {      
+						materials.preload();
+						new THREE.OBJLoader()
+							.setMaterials( materials )
+							.setPath( './babylon/' )
+							.load( 'vstupnisin.obj', function ( object ) 
+              {
+								object.position.y = 0;
+                ob1=object
+								scene.add( object );
+							},);
+					} );
+
+				new THREE.MTLLoader()
+					.setPath( './babylon/' )
+					.load( 'dolnikomora.mtl', function ( materials ) 
+          {
+						materials.preload();
+						new THREE.OBJLoader()
+							.setMaterials( materials )
+							.setPath( './babylon/' )
+							.load( 'dolnikomora.obj', function ( object ) 
+              {
+                ob2=object
+								object.position.y = 0;
+								scene.add( object );
+							},);
+					} );
+        
+
+				new THREE.MTLLoader()
+					.setPath( './babylon/' )
+					.load( 'hornikomora.mtl', function ( materials ) 
+          {
+						materials.preload();
+						new THREE.OBJLoader()
+							.setMaterials( materials )
+							.setPath( './babylon/' )
+							.load( 'hornikomora.obj', function ( object )
+               {
+								object.position.y = 0;
+                ob3=object
+								scene.add( object );
+							},  );
+					} );
+          
+
+				new THREE.MTLLoader()
+					.setPath( './babylon/' )
+					.load( 'vymenek.mtl', function ( materials )
+           {
+						materials.preload();
+						new THREE.OBJLoader()
+							.setMaterials( materials )
+							.setPath( './babylon/' )
+							.load( 'vymenek.obj', function ( object )
+               { 
+								object.position.y = 0;
+                ob4=object   
+								scene.add( object );
+							},  );
+					} );
+				
+				new THREE.MTLLoader()
+					.setPath( './babylon/' )
+					.load( 'cernakuchyne.mtl', function ( materials )
+           {
+						materials.preload();
+						new THREE.OBJLoader()
+							.setMaterials( materials )
+							.setPath( './babylon/' )
+							.load( 'cernakuchyne.obj', function ( object )
+               { 
+								object.position.y = 0;
+                ob5=object   
+								scene.add( object );
+							},  );
+					} );
+           new THREE.MTLLoader()
+					.setPath( './babylon/' )
+					.load( 'venkovnipec.mtl', function ( materials )
+           {
+						materials.preload();
+						new THREE.OBJLoader()
+							.setMaterials( materials )
+							.setPath( './babylon/' )
+							.load( 'venkovnipec.obj', function ( object )
+               { 
+								object.position.y = 0;
+                ob6=object   
+								scene.add( object );
+							},  );
+					} );
+				new THREE.MTLLoader()
+					.setPath( './babylon/' )
+					.load( 'svetnice.mtl', function ( materials )
+           {
+						materials.preload();
+						new THREE.OBJLoader()
+							.setMaterials( materials )
+							.setPath( './babylon/' )
+							.load( 'svetnice.obj', function ( object )
+               { 
+								object.position.y = 0;
+                ob7=object   
+								scene.add( object );
+							},  );
+					} );
+                     new THREE.MTLLoader()
+					.setPath( './babylon/' )
+					.load( 'pavlac.mtl', function ( materials )
+           {
+						materials.preload();
+						new THREE.OBJLoader()
+							.setMaterials( materials )
+							.setPath( './babylon/' )
+							.load( 'pavlac.obj', function ( object )
+               { 
+								object.position.y = 0;
+                ob8=object   
+								scene.add( object );
+							},  );
+					} );
+				new THREE.MTLLoader()
+					.setPath( './babylon/' )
+					.load( 'schody.mtl', function ( materials )
+           {
+						materials.preload();
+						new THREE.OBJLoader()
+							.setMaterials( materials )
+							.setPath( './babylon/' )
+							.load( 'schody.obj', function ( object )
+               { 
+								object.position.y = 0;
+                ob9=object   
+								scene.add( object );
+							},  );
+					} );
+				new THREE.MTLLoader()
+					.setPath( './babylon/' )
+					.load( 'tramy.mtl', function ( materials )
+           {
+						materials.preload();
+						new THREE.OBJLoader()
+							.setMaterials( materials )
+							.setPath( './babylon/' )
+							.load( 'tramy.obj', function ( object )
+               { 
+								object.position.y = 0;
+                ob10=object   
+								scene.add( object );
+							},  );
+					} );
+				
+				new THREE.MTLLoader()
+					.setPath( './babylon/' )
+					.load( 'podlaha.mtl', function ( materials )
+           {
+						materials.preload();
+						new THREE.OBJLoader()
+							.setMaterials( materials )
+							.setPath( './babylon/' )
+							.load( 'podlaha.obj', function ( object )
+               { 
+								object.position.y = 0;
+                ob11=object   
+								scene.add( object );
+							},  );
+					} );
+				
+				new THREE.MTLLoader()
+					.setPath( './babylon/' )
+					.load( 'krov.mtl', function ( materials )
+           {
+						materials.preload();
+						new THREE.OBJLoader()
+							.setMaterials( materials )
+							.setPath( './babylon/' )
+							.load( 'krov.obj', function ( object )
+               { 
+								object.position.y = 0;
+                ob12=object   
+								scene.add( object );
+							},  );
+					} );
+				
+				new THREE.MTLLoader()
+					.setPath( './babylon/' )
+					.load( 'strecha.mtl', function ( materials )
+           {
+						materials.preload();
+						new THREE.OBJLoader()
+							.setMaterials( materials )
+							.setPath( './babylon/' )
+							.load( 'strecha.obj', function ( object )
+               { 
+								object.position.y = 0;
+                ob13=object   
+								scene.add( object );
+							},  );
+					} );
+				
+				
+               var buttonbox = document.createElement("div")
+                        buttonbox.id = "buttonbox"
+                        buttonbox.style.position = "absolute"
+                        buttonbox.style.top = "200px"
+                        buttonbox.style.left = "80%"
+                        buttonbox.style.border = "5pt inset black"
+                        buttonbox.style.padding = "2pt"
+                        buttonbox.style.paddingRight = "10pt"
+                        buttonbox.style.paddingLeft = "10pt"
+                        buttonbox.style.width = "10em"
+                        buttonbox.style.display = "block"
+                        document.body.appendChild(buttonbox)
+
+               var tTag = document.createElement("div")
+                        tTag.id = "choose"
+                        tTag.textContent = "Zobrazit/Skrýt"
+                        tTag.style.textAlign = "center"
+                        tTag.style.border = "3pt solid gold"
+                        tTag.style.marginTop = "2pt"
+                        tTag.style.marginBottom = "2pt"
+                        tTag.style.backgroundColor = "grey"
+                        tTag.style.fontSize = "1.0em"
+                        tTag.style.color = "white"
+                        buttonbox.appendChild(tTag)
+
+               var BT1 = document.createElement("button")
+                        BT1.id = "ShowHidemyMeshesOne"
+                        BT1.textContent = "Vstupní síň"
+                        BT1.style.backgroundColor = "green"
+                        BT1.style.display = "block"
+                        BT1.style.width = "100%"
+                        BT1.style.fontSize = "1.1em"
+                        buttonbox.appendChild(BT1)
+                        BT1.onclick = function() {
+                          // Show/Hide myMeshThree
+                          (ob1.visible)?ob1.visible=false:ob1.visible=true
+                                         enable=ob1.visible
+                          BT1.style.backgroundColor = enable ? "green" : "red"
+                        }
+
+                var BT2 = document.createElement("button")
+                        BT2.id = "ShowHidemyMeshesTwo"
+                        BT2.textContent = "Dolní komora"
+                        BT2.style.backgroundColor = "green"
+                        BT2.style.display = "block"
+                        BT2.style.width = "100%"
+                        BT2.style.fontSize = "1.1em"
+                        buttonbox.appendChild(BT2)
+                        BT2.onclick = function() {
+                          // Show/Hide myMeshThree
+                        (ob2.visible)?ob2.visible=false:ob2.visible=true
+                                         enable=ob2.visible
+                          BT2.style.backgroundColor = enable ? "green" : "red"
+                        }
+
+               var BT3 = document.createElement("button")
+                        BT3.id = "ShowHidemyMeshesThree"
+                        BT3.textContent = "Horní komora"
+                        BT3.style.backgroundColor = "green"
+                        BT3.style.display = "block"
+                        BT3.style.width = "100%"
+                        BT3.style.fontSize = "1.1em"
+                        buttonbox.appendChild(BT3)
+                        BT3.onclick = function() {
+                          // Show/Hide myMeshThree
+                           (ob3.visible)?ob3.visible=false:ob3.visible=true
+                                         enable=ob3.visible
+                          BT3.style.backgroundColor = enable ? "green" : "red"
+                        }
+
+                var BT4 = document.createElement("button")
+                        BT4.id = "ShowHidemyMeshesThree"
+                        BT4.textContent = "Výměnek s kuchyní"
+                        BT4.style.backgroundColor = "green"
+                        BT4.style.display = "block"
+                        BT4.style.width = "100%"
+                        BT4.style.fontSize = "1.1em"
+                        buttonbox.appendChild(BT4)
+                        BT4.onclick = function() {
+                          // Show/Hide myMeshThree
+                            (ob4.visible)?ob4.visible=false:ob4.visible=true
+                                          enable=ob4.visible
+                          BT4.style.backgroundColor = enable ? "green" : "red"
+                        }    
+				
+		var BT5 = document.createElement("button")
+                        BT5.id = "ShowHidemyMeshesThree"
+                        BT5.textContent = "Černá kuchyně"
+                        BT5.style.backgroundColor = "green"
+                        BT5.style.display = "block"
+                        BT5.style.width = "100%"
+                        BT5.style.fontSize = "1.1em"
+                        buttonbox.appendChild(BT5)
+                        BT5.onclick = function() {
+                          // Show/Hide myMeshThree
+                            (ob5.visible)?ob5.visible=false:ob5.visible=true
+                                          enable=ob5.visible
+                          BT5.style.backgroundColor = enable ? "green" : "red"
+                        } 
+                 
+		var BT6 = document.createElement("button")
+                        BT6.id = "ShowHidemyMeshesThree"
+                        BT6.textContent = "Venkovní pec"
+                        BT6.style.backgroundColor = "green"
+                        BT6.style.display = "block"
+                        BT6.style.width = "100%"
+                        BT6.style.fontSize = "1.1em"
+                        buttonbox.appendChild(BT6)
+                        BT6.onclick = function() {
+                          // Show/Hide myMeshThree
+                            (ob6.visible)?ob6.visible=false:ob6.visible=true
+                                          enable=ob6.visible
+                          BT6.style.backgroundColor = enable ? "green" : "red"
+                        } 
+		
+				
+		var BT7 = document.createElement("button")
+                        BT7.id = "ShowHidemyMeshesThree"
+                        BT7.textContent = "Světnice + světnička"
+                        BT7.style.backgroundColor = "green"
+                        BT7.style.display = "block"
+                        BT7.style.width = "100%"
+                        BT7.style.fontSize = "1.1em"
+                        buttonbox.appendChild(BT7)
+                        BT7.onclick = function() {
+                          // Show/Hide myMeshThree
+                            (ob7.visible)?ob7.visible=false:ob7.visible=true
+                                          enable=ob7.visible
+                          BT7.style.backgroundColor = enable ? "green" : "red"
+                        } 
+				
+		var BT8 = document.createElement("button")
+                        BT8.id = "ShowHidemyMeshesThree"
+                        BT8.textContent = "Pavlač"
+                        BT8.style.backgroundColor = "green"
+                        BT8.style.display = "block"
+                        BT8.style.width = "100%"
+                        BT8.style.fontSize = "1.1em"
+                        buttonbox.appendChild(BT8)
+                        BT8.onclick = function() {
+                          // Show/Hide myMeshThree
+                            (ob8.visible)?ob8.visible=false:ob8.visible=true
+                                          enable=ob8.visible
+                          BT8.style.backgroundColor = enable ? "green" : "red"
+                        } 
+
+		var BT9 = document.createElement("button")
+                        BT9.id = "ShowHidemyMeshesThree"
+                        BT9.textContent = "Schody"
+                        BT9.style.backgroundColor = "green"
+                        BT9.style.display = "block"
+                        BT9.style.width = "100%"
+                        BT9.style.fontSize = "1.1em"
+                        buttonbox.appendChild(BT9)
+                        BT9.onclick = function() {
+                          // Show/Hide myMeshThree
+                            (ob9.visible)?ob9.visible=false:ob9.visible=true
+                                          enable=ob9.visible
+                          BT9.style.backgroundColor = enable ? "green" : "red"
+                        } 
+		var BT10 = document.createElement("button")
+                        BT10.id = "ShowHidemyMeshesThree"
+                        BT10.textContent = "Trámy"
+                        BT10.style.backgroundColor = "green"
+                        BT10.style.display = "block"
+                        BT10.style.width = "100%"
+                        BT10.style.fontSize = "1.1em"
+                        buttonbox.appendChild(BT10)
+                        BT10.onclick = function() {
+                          // Show/Hide myMeshThree
+                            (ob10.visible)?ob10.visible=false:ob10.visible=true
+                                          enable=ob10.visible
+                          BT10.style.backgroundColor = enable ? "green" : "red"
+                        } 
+		
+		var BT11 = document.createElement("button")
+                        BT11.id = "ShowHidemyMeshesThree"
+                        BT11.textContent = "Podlaha"
+                        BT11.style.backgroundColor = "green"
+                        BT11.style.display = "block"
+                        BT11.style.width = "100%"
+                        BT11.style.fontSize = "1.1em"
+                        buttonbox.appendChild(BT11)
+                        BT11.onclick = function() {
+                          // Show/Hide myMeshThree
+                            (ob11.visible)?ob11.visible=false:ob11.visible=true
+                                          enable=ob11.visible
+                          BT11.style.backgroundColor = enable ? "green" : "red"
+                        }
+				
+		var BT12 = document.createElement("button")
+                        BT12.id = "ShowHidemyMeshesThree"
+                        BT12.textContent = "Krov"
+                        BT12.style.backgroundColor = "green"
+                        BT12.style.display = "block"
+                        BT12.style.width = "100%"
+                        BT12.style.fontSize = "1.1em"
+                        buttonbox.appendChild(BT12)
+                        BT12.onclick = function() {
+                          // Show/Hide myMeshThree
+                            (ob12.visible)?ob12.visible=false:ob12.visible=true
+                                          enable=ob12.visible
+                          BT12.style.backgroundColor = enable ? "green" : "red"
+                        }
+				
+		var BT13 = document.createElement("button")
+                        BT13.id = "ShowHidemyMeshesThree"
+                        BT13.textContent = "Podlaha"
+                        BT13.style.backgroundColor = "green"
+                        BT13.style.display = "block"
+                        BT13.style.width = "100%"
+                        BT13.style.fontSize = "1.1em"
+                        buttonbox.appendChild(BT13)
+                        BT13.onclick = function() {
+                          // Show/Hide myMeshThree
+                            (ob13.visible)?ob13.visible=false:ob13.visible=true
+                                          enable=ob13.visible
+                          BT13.style.backgroundColor = enable ? "green" : "red"
+                        }
+        //rendering
+			  renderer = new THREE.WebGLRenderer( { antialias: true } );
+        renderer.setClearColor( 0xffffff );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth-80, window.innerHeight );
+				container.appendChild( renderer.domElement );
+
+        //control rotation
+				controls = new THREE.OrbitControls( camera, renderer.domElement );
+				controls.target.set( 0, 0, -0 );
+				controls.update();
+
+
+				window.addEventListener( 'resize', onWindowResize, false );
+
+			}
+
+			function onWindowResize() {
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+				renderer.setSize( window.innerWidth-80, window.innerHeight );
+			}
+
+			function animate() {
+				requestAnimationFrame( animate );
+				render();
+			}
+
+			function render() {
+				renderer.render( scene, camera );
+			}
+
+		</script>
+  </body>
+</html>
